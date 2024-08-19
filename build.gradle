@@ -1,20 +1,12 @@
 plugins {
     id 'java'
     id 'java-library'
+    id 'maven-publish'
     id 'signing'
 }
 
 group = 'io.github.oasisframework'
-setArchivesBaseName('hazelcast-common-helper')
 version = '1.0.1'
-
-repositories {
-    mavenCentral()
-}
-
-signing {
-    sign configurations.archives
-}
 
 dependencies {
     compileOnly('org.springframework.boot:spring-boot-autoconfigure:2.3.12.RELEASE')
@@ -28,4 +20,70 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'io.github.oasisframework'
+            artifactId = 'hazelcast-common-helper'
+            version = '1.0.1'
+            from components.java
+
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                packaging 'jar'
+                name = 'Oasis Framework Hazelcast Common Helper'
+                description = 'Oasis Framework Hazelcast Common Helper'
+                url = 'https://github.com/oasisframework/hazelcast-common-helper'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'oasisframework'
+                        name = 'Oasis Framework'
+                        email = 'oasisframework@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/oasisframework/hazelcast-common-helper.git'
+                    developerConnection = 'scm:git:git@github.com:oasisframework/hazelcast-common-helper.git'
+                    url = 'https://github.com/oasisframework/hazelcast-common-helper'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username ""
+                password ""
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
 }
