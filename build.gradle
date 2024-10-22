@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'io.github.oasisframework'
-version = '1.0.1'
+version = '1.0.2'
 
 dependencies {
     compileOnly('org.springframework.boot:spring-boot-autoconfigure:2.3.12.RELEASE')
@@ -36,14 +36,14 @@ ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 publishing {
     repositories {
         maven {
-            def releaseRepo = "https://central.sonatype.com/repositories/"
+            def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
 
             url = isReleaseVersion ? releaseRepo : snapshotRepo
 
             credentials {
-                username "INSERT_USER_NAME"
-                password "INSERT_PASSWORD"
+                username "9NjN8eC4"
+                password "IhmyYK51wudctSf3ZafCf9jB2TmnVi0CH/etaqxwWlbK"
             }
         }
     }

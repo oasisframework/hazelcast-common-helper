@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Setter
 @Configuration
 @ConfigurationProperties (prefix = "oasis.hz-connection")
-public class HazelcastConnectionAbstractProperties {
+public class HazelcastConnectionProperties {
 	private static final String DEFAULT_PORT = "5701";
 	private static final String PORT_DELIMITER= ":";
 	private static final String ADDRESS_SEPARATOR = ",";
@@ -24,6 +24,7 @@ public class HazelcastConnectionAbstractProperties {
 	private String connectionName;
 	private String connectionPassword;
 	private Integer connectTimeoutAsMilliSeconds;
+	private List<HazelcastMapProperty> creatableMaps;
 
 	public List<String> getAddressList() {
 		if (!StringUtils.hasText(address)) {
