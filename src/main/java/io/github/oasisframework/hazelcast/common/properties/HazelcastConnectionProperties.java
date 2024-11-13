@@ -24,6 +24,7 @@ public class HazelcastConnectionProperties {
 	private String connectionName;
 	private String connectionPassword;
 	private Integer connectTimeoutAsMilliSeconds;
+	private String instanceName;
 	private List<HazelcastMapProperty> creatableMaps;
 
 	public List<String> getAddressList() {
