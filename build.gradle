@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'io.github.oasisframework'
-version = '1.0.2'
+version = '1.0.3'
 
 dependencies {
     compileOnly('org.springframework.boot:spring-boot-autoconfigure:2.3.12.RELEASE')
